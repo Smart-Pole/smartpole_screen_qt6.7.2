@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick  Mqtt)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick  Mqtt Multimedia)
 find_package(Threads)
 
 
@@ -41,7 +41,7 @@ set_target_properties(appsmartpole_screen PROPERTIES
 )
 
 target_link_libraries(appsmartpole_screen
-    PRIVATE Qt6::Quick Qt6::Mqtt
+    PRIVATE Qt6::Quick Qt6::Mqtt Qt6::Multimedia
 
 )
 

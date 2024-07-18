@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include "serialObserver.h"
 #include "mqttHandler.h"
+
+#include<QtMultimedia/qmediaplayer.h>
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -17,7 +19,7 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.load(url);
     // Serial usb = Serial();
-
+    // Output the media backend in use
 
     return app.exec();
 

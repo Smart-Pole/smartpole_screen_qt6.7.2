@@ -9,19 +9,19 @@ SerialObserver::SerialObserver(QObject *parent,const char* port, int baudrate):
     serialInterface = new Serial_Interface(serialPort, sensor);
     timer = new QTimer(this);
 
-    serialPort->start();
-    serialInterface->start();
+    // serialPort->start();
+    // serialInterface->start();
     // load the lastest data
     // updateData();
 
-    // connect(timer, &QTimer::timeout, this, &SerialObserver::updateValue); just for testing ui
-    connect(timer, &QTimer::timeout, this, &SerialObserver::updateData);
-    timer->start(1000); // 10000 milliseconds = 10 seconds
+    connect(timer, &QTimer::timeout, this, &SerialObserver::updateValue); //just for testing ui
+    // connect(timer, &QTimer::timeout, this, &SerialObserver::updateData);
+    timer->start(5000); // 10000 milliseconds = 10 seconds
 }
 SerialObserver::~SerialObserver(){
     timer->stop();
-    serialPort->stop();
-    serialInterface->stop();
+    // serialPort->stop();
+    // serialInterface->stop();
     delete timer;
     delete serialPort;
     delete serialInterface;
