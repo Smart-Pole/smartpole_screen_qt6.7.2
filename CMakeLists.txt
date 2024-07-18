@@ -1,0 +1,55 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(smartpole_screen VERSION 0.1 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick  Mqtt)
+find_package(Threads)
+
+
+
+qt_standard_project_setup()
+
+qt_add_executable(appsmartpole_screen
+    main.cpp
+)
+
+qt_add_qml_module(appsmartpole_screen
+    URI smartpole_screen
+    VERSION 1.0
+    QML_FILES
+        Main.qml
+        QML_FILES RadialBarProgress.qml
+        SOURCES serialObserver.h serialObserver.cpp
+        SOURCES serial/ODR_01.cpp serial/ODR_01.h serial/rs485.cpp serial/rs485.h serial/serial_interface.cpp serial/serial_interface.h serial/serial_port.cpp serial/serial_port.h
+        SOURCES mqttHandler.h mqttHandler.cpp
+        SOURCES
+)
+
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+set_target_properties(appsmartpole_screen PROPERTIES
+#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appsmartpole_screen
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
+)
+
+target_link_libraries(appsmartpole_screen
+    PRIVATE Qt6::Quick Qt6::Mqtt
+
+)
+
+
+
+include(GNUInstallDirs)
+install(TARGETS appsmartpole_screen
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
