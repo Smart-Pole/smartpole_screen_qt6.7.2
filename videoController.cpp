@@ -33,8 +33,6 @@ VideoController::~VideoController(){
 }
 
 
-
-
 void VideoController::onConnected()
 {
     qDebug()<< "[Connection] Connect successfull \n";
@@ -43,6 +41,27 @@ void VideoController::onConnected()
     subscribeAllTopic();
 
 }
+
+QString VideoController::parseM3u8Url(const std::string  &url,const std::string &type)
+{
+    std::string command = "streamlink --stream-url " + url +" "+ type;
+    char buffer[225];
+    FILE *pipe = popen(command.c_str(), "r");
+    if (!pipe) {
+        qDebug() << "streamlink failed!\n";
+
+    }
+    std::string result = "";
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+        result += buffer;
+    }
+    pclose(pipe);
+    result.erase(std::remove(result.begin(), result.end(), '\n'), result.cend());
+    // qDebug()<<result;
+    return QString::fromStdString(result);
+
+}
+
 
 void VideoController::onMessageRecieved(const QByteArray &message, const QMqttTopicName &topic)
 {
@@ -54,16 +73,19 @@ void VideoController::onMessageRecieved(const QByteArray &message, const QMqttTo
     if (messageJsonDoc.isObject()) {
         // convert document to Oject
         QJsonObject messageJsonObj = messageJsonDoc.object();
+
         // Get json value from key
         QJsonValue recievedIDList = messageJsonObj["ID"];
         QJsonValue recievedLink = messageJsonObj["link"];
+
         // Convert type from json to appropriated value
         QJsonArray IDList = recievedIDList.toArray();
-        QString link = recievedLink.toString();
-        setLink(link);
-        qDebug()<<messageJsonObj;
-        qDebug()<<recievedIDList.toArray();
-        qDebug()<<link;
+        QString qlink = recievedLink.toString();
+
+        // parse m3u8 file
+        const std::string stdLink = qlink.toStdString();
+        QString newM3u8Link = parseM3u8Url(stdLink,"480p");
+        setLink(newM3u8Link);
     }
     else{
         qWarning() << "[Warning] data recieved is not json \n" ;
@@ -119,6 +141,17 @@ void VideoController::addTopicList(const char **topicNameList,const int &size)
         }
     }
 }
+// std::string getM3U8Link(const std::string& twitchUrl,const std::string& type) {
+//     std::string command = "streamlink --stream-url " + twitchUrl + type;
+//     std::array<char, 128> buffer;
+//     std::string result;
+//     std::shared_ptr<FILE> pipe(popen(command.c_str(), "r"), pclose);
+//     if (!pipe) throw std::runtime_error("popen() failed!");
+//     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+//         result += buffer.data();
+//     }
+//     return result;
+// }
 
 
 QString VideoController::getLink() const
@@ -142,3 +175,5 @@ void VideoController::setLink(const char* newLink)
     m_link = newQString;
     emit LinkChanged();
 }
+
+

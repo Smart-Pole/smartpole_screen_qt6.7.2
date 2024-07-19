@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <cstdlib>
 
 
 
@@ -16,6 +17,8 @@ class VideoController: public QObject
     Q_OBJECT
     Q_PROPERTY(QString link READ getLink WRITE setLink NOTIFY LinkChanged FINAL)
 public:
+
+
     explicit VideoController(QObject* parent = nullptr,
                 const char* hostName = nullptr,
                 uint16_t port = 1880,
@@ -44,6 +47,7 @@ public:
     void setLink(const QString &newLink);
     void setLink(const char* newLink);
     QString  getLastLink();
+    QString parseM3u8Url(const std::string &url,const std::string &type);
 
 
 signals:
@@ -53,7 +57,7 @@ private:
     QList<QMqttTopicFilter> topics;
     QList<QMqttSubscription*> subcriptionsManager;
     QMqttClient* client = nullptr;
-    char* defaultLink = "file:///home/nhan/workspace/img/wave.mp4";
+    QString defaultLink = QString("file:///home/nhan/workspace/img/wave.mp4");
     QString m_link;
 };
 

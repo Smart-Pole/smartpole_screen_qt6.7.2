@@ -7,6 +7,7 @@
 #include<QtMultimedia/qmediaplayer.h>
 int main(int argc, char *argv[])
 {
+    qputenv("QT_LOGGING_RULES", "qt.multimedia.ffmpeg.warning=false");
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
