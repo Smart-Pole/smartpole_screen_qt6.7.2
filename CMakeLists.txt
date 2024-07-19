@@ -23,10 +23,11 @@ qt_add_qml_module(appsmartpole_screen
     QML_FILES
         Main.qml
         QML_FILES RadialBarProgress.qml
-        SOURCES serialObserver.h serialObserver.cpp
+        SOURCES dashboardController.h dashboardController.cpp
         SOURCES serial/ODR_01.cpp serial/ODR_01.h serial/rs485.cpp serial/rs485.h serial/serial_interface.cpp serial/serial_interface.h serial/serial_port.cpp serial/serial_port.h
-        SOURCES mqttHandler.h mqttHandler.cpp
+        SOURCES videoController.h videoController.cpp
         SOURCES
+        QML_FILES VideoView.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
