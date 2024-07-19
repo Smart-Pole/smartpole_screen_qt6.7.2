@@ -18,7 +18,7 @@ VideoController::VideoController(QObject *parent, const char *hostName, const ui
         qDebug()<<"[Error] "<< error << "\n";}
     );
 
-    addTopic("NhanHuynh/feeds/link");
+
 
     client->connectToHost();
     // subscribe topic
