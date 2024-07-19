@@ -43,6 +43,8 @@ public:
     QString getLink() const;
     void setLink(const QString &newLink);
     void setLink(const char* newLink);
+    QString  getLastLink();
+
 
 signals:
     void LinkChanged();
@@ -51,11 +53,7 @@ private:
     QList<QMqttTopicFilter> topics;
     QList<QMqttSubscription*> subcriptionsManager;
     QMqttClient* client = nullptr;
-
-
-
-
-
+    char* defaultLink = "file:///home/nhan/workspace/img/wave.mp4";
     QString m_link;
 };
 

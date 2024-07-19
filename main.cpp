@@ -11,13 +11,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     // fist solution: load c++ object to qml file and use, you need add marcro QML_ELEMEMT on constructor of your object
-    qmlRegisterType<DashboardController>("DashboardController", 1, 0, "DashboardController");
+    // qmlRegisterType<DashboardController>("DashboardController", 1, 0, "DashboardController");
     // second solution: create c++ object and offer its context for the qml engine(it manager all qml), next just use c++ object on qml file
     DashboardController* dashboardController =  new DashboardController(&app,"/dev/ttyUSB0",9600);
     engine.rootContext()->setContextProperty("DashboardController", dashboardController);
 
     VideoController* videoController =  new VideoController(&app,"io.adafruit.com",1883,"NhanHuynh", "");
-
+    //add topic want to subcribe here
+    videoController->addTopic("NhanHuynh/feeds/link");
     engine.rootContext()->setContextProperty("VideoController", videoController);
 
 

@@ -64,11 +64,6 @@ signals:
     void humidityValueChanged();
     void noiseValueChanged();
     void atmValueChanged();
-
-
-
-
-
     void LightValueChanged();
 
 private:

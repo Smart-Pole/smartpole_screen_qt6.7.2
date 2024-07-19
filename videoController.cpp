@@ -22,7 +22,7 @@ VideoController::VideoController(QObject *parent, const char *hostName, const ui
 
     client->connectToHost();
     // subscribe topic
-
+    setLink(defaultLink);
 
 }
 
