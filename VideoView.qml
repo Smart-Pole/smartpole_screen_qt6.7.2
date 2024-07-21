@@ -13,8 +13,11 @@ Item {
 
             source: sourceLink
             videoOutput: videoOutput
-            audioOutput: AudioOutput {}
-            onErrorOccurred: error => console.log('Error occurred:', errorString, error)
+            // audioOutput: AudioOutput {}
+            autoPlay: true
+            // bufferSize: 50000
+            // onErrorOccurred: error => console.log('Error occurred:', errorString, error)
+            onMediaStatusChanged: console.log("Media status changed:", player.mediaStatus)
             onSourceChanged: {
                 player.play();
             }

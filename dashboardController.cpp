@@ -1,6 +1,6 @@
 #include "dashboardController.h"
 
-DashboardController::DashboardController(QObject *parent,const char* port, int baudrate):
+DashboardController::DashboardController(QObject *parent,const char* port, int baudrate, int mode):
     QObject( parent )
 {
     // allocate mem for property (need to deallocate at the destructor)
@@ -9,14 +9,22 @@ DashboardController::DashboardController(QObject *parent,const char* port, int b
     serialInterface = new Serial_Interface(serialPort, sensor);
     timer = new QTimer(this);
 
-    // serialPort->start();
-    // serialInterface->start();
+    if (mode == RUN){
+        serialPort->start();
+        serialInterface->start();
+        connect(timer, &QTimer::timeout, this, &DashboardController::updateData);
+
+    }
+    else {
+        connect(timer, &QTimer::timeout, this, &DashboardController::updateValue);
+    }
+
     // load the lastest data
     // updateData();
     // updateValue();
 
-    connect(timer, &QTimer::timeout, this, &DashboardController::updateValue); //just for testing ui
-    // connect(timer, &QTimer::timeout, this, &DashboardController::updateData);
+     //just for testing ui
+
     timer->start(5000); // 10000 milliseconds = 10 seconds
 }
 DashboardController::~DashboardController(){

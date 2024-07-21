@@ -49,15 +49,26 @@ public:
     QString  getLastLink();
     QString parseM3u8Url(const std::string &url,const std::string &type);
 
+    void setQuality(const char* newQuality);
+    void setQuality(const QString &newQuality);
+    QString getQuality();
+
+    void setDefaultLink(const char* newDefaultLink);
+    void setDefaultLink(const QString &newDefaultLink);
+    QString getDefaultLink();
+
 
 signals:
     void LinkChanged();
 
 private:
+
+    // quality in twitch is "160p", "360p", "480p" , "720p", "1080p", "worst" and "best"
+    QString quality= QString("480p");
     QList<QMqttTopicFilter> topics;
     QList<QMqttSubscription*> subcriptionsManager;
     QMqttClient* client = nullptr;
-    QString defaultLink = QString("file:///home/nhan/workspace/img/wave.mp4");
+    QString defaultLink = QString("https://live4.thvli.vn/Ao-O3eV678ehY8Riwr6BTg/1721556483/thvli/thvl1-abr/thvl111220/thvl1-480p/chunks.m3u8");
     QString m_link;
 };
 

@@ -27,8 +27,12 @@ class DashboardController: public QObject
     // uncomment bottom line if you using c++object to your qml
     // QML_ELEMENT
 public:
+    enum MODE{
+        TEST = 0,
+        RUN
+    };
 
-    explicit DashboardController(QObject *parent = nullptr, const char* port = "/dev/ttyUSB0", int baudrate = 9600);
+    explicit DashboardController(QObject *parent = nullptr, const char* port = "/dev/ttyUSB0", int baudrate = 9600, int mode = TEST);
     ~DashboardController();
 
 
