@@ -74,7 +74,7 @@ Window {
 
                     contentTextSize: 25
                     titleSize: 20
-                    widthLine: 20
+                    widthLine: 15
 
                     titleColor: "#FAFAFA"
                     backgroundColor: "#1d1d35"

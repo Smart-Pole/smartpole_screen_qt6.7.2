@@ -20,9 +20,9 @@ Item {
 
     // background color property
 
-    property alias backgroundColor: container.color
+    property color backgroundColor //container.color
     // property alias progressLineColor: progressLine.strokeColor
-    property alias foregroundColor: forceground.strokeColor
+    property color foregroundColor //forceground.strokeColor
 
 
 
@@ -34,7 +34,7 @@ Item {
     property double lowerThreshold: 30
 
     // arc property
-    property double widthLine: 30
+    property double widthLine: 15
 
 
 
@@ -76,6 +76,7 @@ Item {
         anchors.margins: 0
         // border.color: "blue"
         // border.width: 10
+        color: backgroundColor
 
 
         Rectangle{
@@ -108,13 +109,19 @@ Item {
                 anchors.fill: parent
 
                 antialiasing: true
+                layer.enabled:true
+                layer.samples: 8
+
                 ShapePath {
                     id:forceground
-                    strokeColor: "grey"
+                    strokeColor: foregroundColor
                     strokeWidth: widthLine
+                    // strokeStyle:
                     fillColor: "transparent"
                     fillRule: ShapePath.OddEvenFill
                     capStyle: ShapePath.RoundCap
+                    joinStyle: ShapePath.RoundJoin
+
                     PathAngleArc {
                         centerX: shape.width/2; centerY: shape.height/2
                         radiusX: arcLineRadius; radiusY: arcLineRadius
@@ -122,6 +129,7 @@ Item {
                         sweepAngle: stopLengthAngle
                     }
                 }
+
 
                 ShapePath {
                     id:progressLine
@@ -131,6 +139,7 @@ Item {
                     fillColor: "transparent"
                     fillRule: ShapePath.OddEvenFill
                     capStyle: ShapePath.RoundCap
+                    joinStyle: ShapePath.RoundJoin
                     PathAngleArc {
                         centerX: shape.width/2; centerY: shape.height/2
                         radiusX: arcLineRadius; radiusY: arcLineRadius
