@@ -20,12 +20,11 @@ More details in [here](https://epcb.vn/products/cam-bien-giam-sat-cac-moi-truong
 ![image](https://github.com/user-attachments/assets/32153c4c-dc30-4ace-9c29-4df74b029a8b)
 # Layout of screen on smartpole
 ![image](https://github.com/user-attachments/assets/2b84c36e-38b1-4702-8c7b-888d63208464)
-With the radial bar have 3 state color(green if value in low, yellow if value in medium and red in high)
-![image](https://github.com/user-attachments/assets/5e4a0e02-2ea8-419a-a357-c970a65b7657)
-![image](https://github.com/user-attachments/assets/915a5bae-42da-4fb7-80f3-c44b3e5ef115)
-![image](https://github.com/user-attachments/assets/8583b0a0-0f89-4332-9a86-f72b73b613e6)
+With the radial bar have 3 state color(green if value in low, yellow if value in medium and red in high).<br>
+![image](https://github.com/user-attachments/assets/5e4a0e02-2ea8-419a-a357-c970a65b7657) ![image](https://github.com/user-attachments/assets/915a5bae-42da-4fb7-80f3-c44b3e5ef115) ![image](https://github.com/user-attachments/assets/8583b0a0-0f89-4332-9a86-f72b73b613e6)
 # Software Design
 ## File structure 
+```plaintext
 repository/
 ├── serial/
 │   ├── ODR_01.h
@@ -45,6 +44,7 @@ repository/
 ├── videoControl.h
 ├── videoControl.cpp
 └── README.md
+```
 * serial: low level interface using for reading value of sensor.
 * RadialBarProgress.qml (quick makeup language): this file describe UI of the radial bar
 * VideoView.qml: describe UI of the media player to display media
