@@ -1,22 +1,23 @@
 # Smartpole_screen_qt
 # Dependency
-[QT>=6.7.2](https://www.qt.io/)  
-[Qmqtt module of qt](https://code.qt.io/cgit/qt/qtmqtt.git/)
-[streamlink](https://streamlink.github.io/)
-[ffmepg](https://www.ffmpeg.org/)  
+[QT>=6.7.2](https://www.qt.io/)  <br>
+[Qmqtt module of qt](https://code.qt.io/cgit/qt/qtmqtt.git/) <br>
+[streamlink](https://streamlink.github.io/) <br>
+[ffmepg](https://www.ffmpeg.org/)  <br>
 # Description
 Implement air sensor system and screen display of an smartpole device. The air sensor will be read and display on top screen, the remain of screen will play an media.
+Air sensor will commonication with controller througt modbus 485 protocol and update these value to screen, this screen also display media which source is control throung mqtt protocol. <br>
 # Hardware 
-ES-INTEGRATED-ODR-01
+ES-INTEGRATED-ODR-01 <br>
 Meteorological shutter is a fixed all-in-one ground automatic observation equipment.
 Observation items mainly include wind direction, wind speed, temperature, humidity,
 atmospheric pressure, illuminance, carbon dioxide concentration, PM2.5, PM10,
 oxygen concentration, ammonia concentration, hydrogen sulfide concentration, noise
-and other meteorological elements.
+and other meteorological elements. <br>
 Meteorological shutters can be widely used in urban environment measurement,
 agricultural monitoring, industrial governance and other environments in order to
-collect more abundant and effective monitoring data.
-More details in [here](https://epcb.vn/products/cam-bien-giam-sat-cac-moi-truong-ngoai-troi-sensor-outdoor)
+collect more abundant and effective monitoring data. <br>
+More details in [here](https://epcb.vn/products/cam-bien-giam-sat-cac-moi-truong-ngoai-troi-sensor-outdoor) <br>
 ![image](https://github.com/user-attachments/assets/32153c4c-dc30-4ace-9c29-4df74b029a8b)
 # Layout of screen on smartpole
 ![image](https://github.com/user-attachments/assets/2b84c36e-38b1-4702-8c7b-888d63208464)
@@ -54,6 +55,8 @@ repository/
 * Model: serial directory with contain interface to get data from sensor
 * View: *.qml file  which describe ui of each components.
 * Controller: *.h and *.cpp which control behavior of each components.
+![image](https://github.com/user-attachments/assets/1ebf3705-6c87-40af-b1c0-8fc0a9b6fac0)
+
 
 
 
